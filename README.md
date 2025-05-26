@@ -1,16 +1,2 @@
-# Bootstrap w/ Vite
-
-Include [Bootstrap](https://getbootstrap.com)'s source Sass and individual JavaScript plugins with [Vite](https://vitejs.dev/).
-
-## Edit in browser
-
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/twbs/examples/tree/main/vite?file=login.php)
-
-## How to use
-
-```sh
-git clone https://github.com/twbs/examples.git
-cd examples/vite/
-npm install
-npm start
-```
+# KOALANICE
+A basic chat web app built using raw PHP, MySQL, HTML, CSS, JS, and AJAX — no WebSockets involved. It’s not production-ready but is perfect for beginners to understand how chat systems work. Simple, lightweight, and designed purely for learning purposes.
