@@ -1,0 +1,59 @@
+.body-wrap {
+  position: relative;
+  max-height: 100vh;
+  overflow-y: auto;
+}
+
+.body-wrap > .container-fluid,
+.body-wrap > .container-lg,
+.body-wrap > .container-md,
+.body-wrap > .container-sm,
+.body-wrap > .container-xl,
+.body-wrap > .container-xxl {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 24px;
+  height:100%;
+  transition: 0.2s ease-in;
+}
+
+/* Mobile padding adjustments */
+@media (max-width: 767.98px) {
+  .body-wrap > .container-fluid,
+  .body-wrap > .container-lg,
+  .body-wrap > .container-md,
+  .body-wrap > .container-sm,
+  .body-wrap > .container-xl,
+  .body-wrap > .container-xxl {
+    padding: 30px 20px;
+  }
+}
+
+/* Adjust top padding when header is fixed */
+#main-wrapper[data-layout="vertical"][data-header-position="fixed"]
+  .body-wrap
+  > .container-fluid,
+#main-wrapper[data-layout="vertical"][data-header-position="fixed"]
+  .body-wrap
+  > .container-lg,
+#main-wrapper[data-layout="vertical"][data-header-position="fixed"]
+  .body-wrap
+  > .container-md,
+#main-wrapper[data-layout="vertical"][data-header-position="fixed"]
+  .body-wrap
+  > .container-sm,
+#main-wrapper[data-layout="vertical"][data-header-position="fixed"]
+  .body-wrap
+  > .container-xl,
+#main-wrapper[data-layout="vertical"][data-header-position="fixed"]
+  .body-wrap
+  > .container-xxl {
+  padding-top: calc(70px + 15px);
+}
+
+/* Sidebar offset on larger screens */
+@media (min-width: 1200px) {
+  #main-wrapper[data-layout="vertical"][data-sidebartype="full"] .body-wrap {
+    margin-left: 270px;
+  }
+}
