@@ -5,24 +5,36 @@ include_once '../dboperation.php';
 $con = new dboperation();
 
 if (isset($_POST['submitbutton'])) {
-    // Escape user inputs to reduce injection risk
+    // Escape user inputs to reduce injection risk (note: still not secure due to unparameterized query)
     $username = $con->con->real_escape_string($_POST['username']);
     $password = $con->con->real_escape_string($_POST['password']);
 
-    // UNPARAMETERIZED query — insecure, for testing only
-    $query = "SELECT * FROM users WHERE username = '$username' AND password = '$password' and status= 'Accepted'";
-    $stmt = $con->executequery($query);
-    
-    if ($stmt && mysqli_num_rows($stmt) > 0) {
-        $user = mysqli_fetch_assoc($stmt);
+    // First check in users table
+    $query_user = "SELECT * FROM users WHERE username = '$username' AND password = '$password' AND user_status = 'Accepted'";
+    $stmt_user = $con->executequery($query_user);
+
+    if ($stmt_user && mysqli_num_rows($stmt_user) > 0) {
+        $user = mysqli_fetch_assoc($stmt_user);
         $_SESSION['userid'] = $user['id'];
         header("Location: ../user/index.php");
         exit();
     } else {
-        echo "<script>alert('No such user found');</script>";
+        // Now check in admin table
+        $query_admin = "SELECT * FROM tbl_admin WHERE admin_name = '$username' AND admin_pass = '$password'";
+        $stmt_admin = $con->executequery($query_admin);
+
+        if ($stmt_admin && mysqli_num_rows($stmt_admin) > 0) {
+            $admin = mysqli_fetch_assoc($stmt_admin);
+            $_SESSION['adminid'] = $admin['admin_id'];
+            header("Location: ../admin/index.php");
+            exit();
+        } else {
+            echo "<script>alert('No such user or admin found');</script>";
+        }
     }
 }
 ?>
+
 
 <!doctype html>
 <html lang="en">
